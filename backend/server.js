@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const multer = require('multer');
+const path = require('path');
+
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 require('dotenv').config();
@@ -33,7 +35,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Connect to MongoDB
 connectDB();
 
@@ -83,16 +85,16 @@ app.use('/uploads', express.static('uploads'));
 
 
 // API to upload and save image as BLOB
-app.post('/upload', upload.single('image'), (req, res) => {
-  const image = fs.readFileSync(req.file.path);
-  const sql = 'INSERT INTO items (name, price, image) VALUES (?, ?, ?)';
-  const data = ['Chocolate Box', 15.99, image];
+// app.post('/upload', upload.single('image'), (req, res) => {
+//   const image = fs.readFileSync(req.file.path);
+//   const sql = 'INSERT INTO items (name, price, image) VALUES (?, ?, ?)';
+//   const data = ['Chocolate Box', 15.99, image];
 
-  db.query(sql, data, (err, result) => {
-      if (err) throw err;
-      res.json({ message: 'Image uploaded and saved to database' });
-  });
-});
+//   db.query(sql, data, (err, result) => {
+//       if (err) throw err;
+//       res.json({ message: 'Image uploaded and saved to database' });
+//   });
+// });
 
 
 // Define a GET route for /items

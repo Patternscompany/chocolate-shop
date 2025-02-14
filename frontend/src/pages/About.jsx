@@ -21,7 +21,7 @@ function About() {
       <div>
             {products.map((product) => (
                 <div key={product.id}>
-                    <img src={product.image_url} alt={product.name} style={{ width: '150px' }} />
+                    <img src={`http://localhost:5001${product.image_url}`} alt={product.name} style={{ width: '150px' }} />
                     <h2>{product.name}</h2>
                     <p>${product.price}</p>
                 </div>
