@@ -1,9 +1,12 @@
 import React, { useContext } from 'react';
 import { ShopContext } from '../context/shopContext';
+import { useNavigate } from "react-router-dom";
+import Checkout from '../pages/Checkout';
 
 const Cart = () => {
   const { cart, currency,removeFromCart } = useContext(ShopContext);
 
+  const navigate = useNavigate();
   // Calculate the total price of the cart
   const cartTotal = cart.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -66,7 +69,9 @@ const Cart = () => {
           <p className="text-xl font-semibold text-gray-900">
             {currency} {cartTotal.toFixed(2)}
           </p>
-          <button className='p-3 bg-black text-white rounded-lg'>Checkout</button>
+          <button onClick={()=>{
+            navigate("/checkout")
+          }} className='p-3 bg-black text-white rounded-lg'>Checkout</button>
 
         </div>
       )}

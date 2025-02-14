@@ -16,6 +16,7 @@ import Summary from './pages/Summary';
 import Details from './pages/Details';
 import Cart from './pages/Cart';
 import ProductDetails from './pages/Product';
+import Checkout from './pages/Checkout';
 
 function App() {
   
@@ -38,6 +39,7 @@ function App() {
           <Route path="/explore" element={<Explore />} />
           <Route path="/summary" element={<Summary />} />
           <Route path="/details" element={<Details />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/product/:id" element={<ProductDetails />} />
         </Routes>
       </div>
