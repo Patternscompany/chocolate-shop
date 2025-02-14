@@ -1,11 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function About() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+      axios.get('http://localhost:5001/items') // Backend API to get products
+          .then((response) => {
+              setProducts(response.data);
+          })
+          .catch((error) => {
+              console.error('Error fetching products:', error);
+          });
+  }, []);
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
     <div className="max-w-7xl mx-auto px-4 py-12">
       <h1 className="text-4xl font-bold text-gray-800 mb-8">About Us</h1>
       
+      <div>
+            {products.map((product) => (
+                <div key={product.id}>
+                    <img src={product.image_url} alt={product.name} style={{ width: '150px' }} />
+                    <h2>{product.name}</h2>
+                    <p>${product.price}</p>
+                </div>
+            ))}
+        </div>
+
+
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div>
           <img
