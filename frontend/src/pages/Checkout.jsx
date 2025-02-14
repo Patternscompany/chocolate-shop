@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import { ShopContext } from "../context/shopContext";
+import Payment from "../pages/Payment";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const { cart, currency } = useContext(ShopContext);
@@ -23,7 +25,7 @@ const Checkout = () => {
     e.preventDefault();
     alert("Order placed successfully!");
   };
-
+  const navigate = useNavigate();
   return (
     <div className="p-6 max-w-5xl mx-auto ">
       <h1 className="text-2xl font-bold mb-6 check">Checkout</h1>
@@ -99,7 +101,9 @@ const Checkout = () => {
             <p>{currency} {cartTotal.toFixed(2)}</p>
             
           </div>
-          <button 
+          <button  onClick={()=>{
+            navigate("/payment")
+          }}
       className="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg font-bold text-center transition hover:bg-blue-700"
     >
       Proceed to Pay
