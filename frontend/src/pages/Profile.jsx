@@ -1,8 +1,11 @@
- import React from 'react';
+ import React,{useContext} from 'react';
  import { Link } from 'react-router-dom';
 import { User, Settings, FileText, LogOut } from 'lucide-react';
+import { AuthContext } from '../pages/AuthContext';
+
 
 function Profile() {
+  const { isLoggedIn, logout,username } = useContext(AuthContext);
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
       <div className="max-w-4xl mx-auto px-4 py-12">
@@ -28,7 +31,7 @@ function Profile() {
                   <label className="block text-gray-700 mb-2">Name</label>
                   <input
                     type="text"
-                    value="John Doe"
+                    value={username}
                     className="w-full p-3 border border-gray-300 rounded-lg"
                     readOnly
                   />

@@ -14,6 +14,7 @@ import Profile from './pages/Profile';
 import Explore from './pages/Explore';
 import Summary from './pages/Summary';
 import Details from './pages/Details';
+import Cart from './pages/Cart';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/calculator" element={<Calculator />} />
           <Route path="/my-estimates" element={<MyEstimates />} /> {/* Add route for MyEstimates */}
           <Route path="/login" element={<Login />} />

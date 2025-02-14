@@ -13,7 +13,7 @@ function Login() {
     e.preventDefault();
   
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
+      const response = await axios.post('http://localhost:5001/api/auth/login', {
         email: formData.email,
         password: formData.password,
       });
@@ -34,7 +34,8 @@ function Login() {
       }
   
       alert('Login successful!');
-      navigate('/'); // Redirect to home or another page after successful login
+      navigate('/');
+      window.location.reload(); // Redirect to home or another page after successful login
     } catch (error) {
       // Handle errors and show appropriate messages
       const errorMessage = error.response?.data?.message || 'Login failed. Please try again.';

@@ -1,7 +1,9 @@
 import React, { useState,useContext } from 'react';
 import { Link ,useLocation} from 'react-router-dom';
-import { Menu, X, Calculator, ChevronDown, User } from 'lucide-react';
+
+import { Menu, X,ShoppingCart, Calculator, ChevronDown, User } from 'lucide-react';
 import { AuthContext } from '../pages/AuthContext';
+import { ShopContext } from "../context/ShopContext";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,14 +11,23 @@ function Navbar() {
   const { isLoggedIn, logout,username } = useContext(AuthContext);
   const location = useLocation();
   const hiddenPaths = ['/calculator', '/my-estimates','/details','/summary','/explore'];
+  const shopContext = useContext(ShopContext);
+  if (!shopContext) {
+    return null; // Handle case where context is not available
+  }
+
+  const { cart } = shopContext;
+  const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
+
 
   const services = [
-    'Interior Design',
-    'Space Planning',
-    'Renovation',
-    'Furniture Design',
-    'Lighting Design'
+    'Handcrafted Chocolates',
+    'Custom Chocolate Gifts',
+    'Chocolate Boxes for Events',
+    'Artisan Chocolate Bars',
+    'Personalized Packaging'
   ];
+  
 
   return (
     <nav className="bg-white shadow-lg fixed w-full z-50">
@@ -24,13 +35,13 @@ function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0">
-              <h1 className="text-2xl font-bold text-gray-800">InteriorPro</h1>
+              <h1 className="text-2xl font-bold text-gray-800">Chocolate shop</h1>
             </Link>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/" className="text-gray-700 hover:text-gray-900">Home</Link>
-            <Link to="/about" className="text-gray-700 hover:text-gray-900">About</Link>
+           
             
             <div className="relative">
               <button
@@ -59,13 +70,23 @@ function Navbar() {
                 </div>
               )}
             </div>
-
-            <Link to="/portfolio" className="text-gray-700 hover:text-gray-900">Portfolio</Link>
+            <Link to="/about" className="text-gray-700 hover:text-gray-900">About</Link>
+            {/* <Link to="/portfolio" className="text-gray-700 hover:text-gray-900">Portfolio</Link> */}
            
             <Link to="/contact" className="text-gray-700 hover:text-gray-900">Contact</Link>
-            <Link to="/my-estimates">
-            My Estimates</Link>
-            {!hiddenPaths.includes(location.pathname) && (
+            {/* Cart Icon with Badge */}
+          <Link to="/cart" className="relative p-2 hover:bg-gray-100 rounded-full">
+            <ShoppingCart className="w-6 h-6 text-[#3c1618]" />
+            
+            {cartItemCount > 0 && (
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+              {cartItemCount}
+            </span>
+          )}
+          </Link>
+            {/* <Link to="/my-estimates">
+            My Estimates</Link> */}
+            {/* {!hiddenPaths.includes(location.pathname) && (
             <Link
               to="/calculator"
               className="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center"
@@ -73,7 +94,7 @@ function Navbar() {
               <Calculator className="mr-2 h-4 w-4" />
               Calculator
             </Link>
-          )}
+          )} */}
          {!isLoggedIn ? (
   <>
     <Link to="/login" className="text-gray-700 hover:text-gray-900">Login/signup</Link>
@@ -128,10 +149,10 @@ function Navbar() {
                 ))}
               </div>
             )}
-            <Link to="/portfolio" className="block px-3 py-2 text-gray-700 hover:text-gray-900">Portfolio</Link>
+            {/* <Link to="/portfolio" className="block px-3 py-2 text-gray-700 hover:text-gray-900">Portfolio</Link> */}
             <Link to="/contact" className="block px-3 py-2 text-gray-700 hover:text-gray-900">Contact</Link>
-            <Link to="/calculator" className="block px-3 py-2 text-gray-700 hover:text-gray-900">Calculator</Link>
-            <Link to="/profile" className="block px-3 py-2 text-gray-700 hover:text-gray-900">Profile</Link>
+            {/* <Link to="/calculator" className="block px-3 py-2 text-gray-700 hover:text-gray-900">Calculator</Link> */}
+            {/* <Link to="/profile" className="block px-3 py-2 text-gray-700 hover:text-gray-900">Profile</Link> */}
           </div>
         </div>
       )}

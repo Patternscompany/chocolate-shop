@@ -3,45 +3,46 @@ import React from 'react';
 function About() {
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold text-gray-800 mb-8">About Us</h1>
+    <div className="max-w-7xl mx-auto px-4 py-12">
+      <h1 className="text-4xl font-bold text-gray-800 mb-8">About Us</h1>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div>
+          <img
+            src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&q=80"
+            alt="Chocolate Making Process"
+            className="rounded-lg shadow-lg w-full h-[400px] object-cover"
+          />
+        </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div>
-            <img
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-              alt="Interior Design Team"
-              className="rounded-lg shadow-lg w-full h-[400px] object-cover"
-            />
-          </div>
+        <div>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Our Journey</h2>
+          <p className="text-gray-600 mb-6">
+            Our story began with a deep passion for crafting exquisite chocolates that delight the senses. 
+            From humble beginnings, we've grown into a brand trusted by chocolate lovers around the world. 
+            Every piece we create is a celebration of flavor, tradition, and innovation.
+          </p>
           
-          <div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Our Story</h2>
-            <p className="text-gray-600 mb-6">
-              With over a decade of experience in transforming spaces, we've built a reputation
-              for creating beautiful, functional interiors that reflect our clients' unique styles
-              and needs. Our passion for design excellence drives everything we do.
-            </p>
-            
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Our Mission</h2>
-            <p className="text-gray-600 mb-6">
-              We strive to create exceptional living spaces that enhance our clients' quality of
-              life while maintaining the highest standards of design and craftsmanship. Our
-              commitment to innovation and sustainability sets us apart.
-            </p>
-            
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Our Values</h2>
-            <ul className="list-disc list-inside text-gray-600 space-y-2">
-              <li>Excellence in design and execution</li>
-              <li>Client-focused approach</li>
-              <li>Sustainable practices</li>
-              <li>Innovation and creativity</li>
-              <li>Attention to detail</li>
-            </ul>
-          </div>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Our Mission</h2>
+          <p className="text-gray-600 mb-6">
+            We aim to spread joy and indulgence through our handcrafted chocolates. 
+            By using the finest ingredients and sustainable practices, we create treats that bring happiness 
+            while caring for our planet and communities.
+          </p>
+          
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Our Values</h2>
+          <ul className="list-disc list-inside text-gray-600 space-y-2">
+            <li>Craftsmanship and attention to detail</li>
+            <li>Commitment to quality ingredients</li>
+            <li>Sustainability and eco-friendly practices</li>
+            <li>Innovation in flavors and designs</li>
+            <li>Customer satisfaction above all</li>
+          </ul>
         </div>
       </div>
     </div>
+  </div>
+  
   );
 }
 

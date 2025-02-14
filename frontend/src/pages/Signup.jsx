@@ -18,7 +18,7 @@ function Signup() {
     }
   
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/register', {
+      const response = await axios.post('http://localhost:5001/api/auth/register', {
         username: formData.username, // Include username here
         name: formData.name,
         email: formData.email,

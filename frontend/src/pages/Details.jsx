@@ -57,7 +57,7 @@ function Details() {
         },
       };
 
-      const response = await axios.post('http://localhost:5000/api/auth/save-estimate', estimatePayload, {
+      const response = await axios.post('http://localhost:5001/api/auth/save-estimate', estimatePayload, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -78,7 +78,7 @@ function Details() {
         return;
       }
 
-      const response = await axios.get('http://localhost:5000/api/auth/recent-estimates', {
+      const response = await axios.get('http://localhost:5001/api/auth/recent-estimates', {
         headers: { Authorization: `Bearer ${token}` },
       });
 
