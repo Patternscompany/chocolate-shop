@@ -2,6 +2,8 @@ import React,{ useContext,useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { ShopContext } from '../context/shopContext';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Home() {
   // Use the context
@@ -17,8 +19,15 @@ function Home() {
 
   const handleAddToCart = (product) => {
     addToCart(product); // Add product to cart
-    setNotification(true); // Show notification
-    setTimeout(() => setNotification(false), 3000); // Hide after 3 seconds
+     toast.success("Product added to cart!", {
+          position: "top-right",
+          autoClose: 3000, // Toast disappears after 3 seconds
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+        });
   };
   return (
     <div className="min-h-screen">
@@ -187,7 +196,7 @@ function Home() {
     </Link>
   </div>
 </div>
-
+<ToastContainer />
     </div>
   );
 }
