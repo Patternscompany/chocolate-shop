@@ -96,14 +96,16 @@ function Home() {
             key={product._id}
             className="relative overflow-hidden rounded-lg shadow-lg group"
           >
-            <Link to={`/product/${product._id}`}>
+            
            
             <div className="relative group-hover:shadow-xl transition-transform duration-300 ease-in-out">
+            <Link to={`/product/${product._id}`}>
               <img
                 src={product.image}
                 alt={product.name}
                 className="w-full h-60 object-cover transition-all duration-300 cursor-pointer"
               />
+               </Link>
  {/* Product Details */}
  <div className="text-center py-4">
               <p className="text-lg font-semibold text-gray-800">{product.name}</p>
@@ -121,7 +123,7 @@ function Home() {
                 </button>
               </div>
             </div>
-            </Link>
+           
            
           </div>
         ))}
