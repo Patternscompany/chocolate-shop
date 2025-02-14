@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
+const multer = require('multer');
+const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
@@ -56,6 +58,58 @@ const authenticateToken = (req, res, next) => {
 // -------------------- Routes --------------------
 const router = express.Router();
 
+
+// Configure multer for file upload
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, 'uploads/'),
+  filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname),
+});
+const upload = multer({ storage });
+
+
+// MySQL connection
+const db = mysql.createConnection({
+  host: 'db4free.net',
+  user: 'panduranga',
+  password: 'Pandu@123',
+  database: 'pandureddy',
+});
+
+db.connect((err) => {
+  if (err) throw err;
+  console.log('MySQL Connected!');
+});
+app.use('/uploads', express.static('uploads'));
+
+
+// API to upload and save image as BLOB
+app.post('/upload', upload.single('image'), (req, res) => {
+  const image = fs.readFileSync(req.file.path);
+  const sql = 'INSERT INTO items (name, price, image) VALUES (?, ?, ?)';
+  const data = ['Chocolate Box', 15.99, image];
+
+  db.query(sql, data, (err, result) => {
+      if (err) throw err;
+      res.json({ message: 'Image uploaded and saved to database' });
+  });
+});
+
+
+// Define a GET route for /items
+app.get('/items', (req, res) => {
+  const sqlQuery = 'SELECT * FROM items'; // Adjust based on your table name and structure
+
+  db.query(sqlQuery, (err, results) => {
+      if (err) {
+          console.error('Error fetching data:', err);
+          res.status(500).json({ error: 'Failed to fetch data from the database' });
+      } else {
+          res.status(200).json(results); // Send the database results as the response
+      }
+  });
+});
+
+
 // Save Estimate
 router.post('/save-estimate', authenticateToken, async (req, res) => {
   try {
@@ -77,6 +131,17 @@ router.post('/save-estimate', authenticateToken, async (req, res) => {
     console.error('Error saving estimate:', error.message);
     res.status(500).json({ message: 'Failed to save estimate', error: error.message });
   }
+});
+
+app.get('/product/:id', (req, res) => {
+  const sql = 'SELECT * FROM items WHERE id = ?';
+  db.query(sql, [req.params.id], (err, result) => {
+      if (err) throw err;
+
+      const product = result[0];
+      product.image = `data:image/jpeg;base64,${Buffer.from(product.image).toString('base64')}`;
+      res.json(product);
+  });
 });
 
 // Fetch Recent Estimates
