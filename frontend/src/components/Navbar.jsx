@@ -101,11 +101,11 @@ function Navbar() {
   </>
 ) : (
   <>
-    <Link to="/profile" className="text-gray-700 hover:text-gray-900 flex items-center">
+    <Link to="/profile" className="text-gray-700 user hover:text-gray-900 flex items-center">
       <User className="h-6 w-6 mr-2" />
       <span className="text-gray-700">{username}</span> {/* Display username here */}
     </Link>
-    <button onClick={logout} className="text-gray-700 hover:text-gray-900">Logout</button>
+    <button onClick={logout} className="text-gray-700 bg-red-500 text-white logout hover:text-gray-900">Logout</button>
   </>
 )}
 

@@ -96,6 +96,8 @@ function Home() {
             key={product._id}
             className="relative overflow-hidden rounded-lg shadow-lg group"
           >
+            <Link to={`/product/${product._id}`}>
+           
             <div className="relative group-hover:shadow-xl transition-transform duration-300 ease-in-out">
               <img
                 src={product.image}
@@ -119,7 +121,7 @@ function Home() {
                 </button>
               </div>
             </div>
-
+            </Link>
            
           </div>
         ))}

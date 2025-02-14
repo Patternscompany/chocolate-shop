@@ -15,7 +15,7 @@ import Explore from './pages/Explore';
 import Summary from './pages/Summary';
 import Details from './pages/Details';
 import Cart from './pages/Cart';
-
+import ProductDetails from './pages/Product';
 
 function App() {
   
@@ -38,6 +38,7 @@ function App() {
           <Route path="/explore" element={<Explore />} />
           <Route path="/summary" element={<Summary />} />
           <Route path="/details" element={<Details />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
         </Routes>
       </div>
     </Router>
