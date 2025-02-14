@@ -66,6 +66,8 @@ const Cart = () => {
           <p className="text-xl font-semibold text-gray-900">
             {currency} {cartTotal.toFixed(2)}
           </p>
+          <button className='p-3 bg-black text-white rounded-lg'>Checkout</button>
+
         </div>
       )}
     </div>
